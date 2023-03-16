@@ -1,7 +1,7 @@
-model: zoobot_colour
+model: vgg16
 
 data:
-  path: /share/data1/galaxy_zoo_2/
+  path: /Users/sutong20000801/Downloads/xai_bar_lengths
   random_seed: 123
   augmentation:
     rotation_range: 360

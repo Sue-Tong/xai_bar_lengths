@@ -15,6 +15,7 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.applications import Xception, ResNet50V2, VGG16
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+
 print('TensorFlow Version:', tf.__version__)
 print('No. GPUs Available:', len(tf.config.list_logical_devices('GPU')))
 
@@ -104,7 +105,7 @@ elif model_type == 'xception':
     base_model = Xception(include_top=False, input_shape=(img_height, img_width, img_depth), pooling='avg')
     x = layers.Dense(n_classes, activation='sigmoid')(base_model.output)
     model = Model(inputs=base_model.input, outputs=x)
-    
+
 else:
     NotImplementedError('Please select one of "vgg16", "resnet50v2", or "xception" as the model.')
 
@@ -115,7 +116,7 @@ for l in model.layers:
 
 Path(f'./out/{model_type}/').mkdir(parents=True, exist_ok=True)
 
-adam = optimizers.Adam(lr=lr, decay=decay)
+adam = optimizers.legacy.Adam(learning_rate=lr, decay=decay)
 mse = losses.MeanSquaredError()
 rmse = metrics.RootMeanSquaredError()
 
